@@ -1,5 +1,5 @@
 # Battle Royale Streak Counter
-Tampermonkey script for GeoGuessr that incorporates a win streak counter into the Battle Royale game mode. *Tutorial for how to install further down!*
+Script for GeoGuessr that incorporates a win streak counter into the Battle Royale game mode. *Tutorial for how to install further down!*
 
 * Includes a personal best counter lasting the duration of the session.
 * Change score manually by pressing 1 and 2. (can be edited at the bottom of the script)
@@ -13,7 +13,7 @@ Based on SubSymmetry's Country Streak Counter (Manual) script!
 ![Loss Screen](Images/general/loss.png)
 
 ## Installation (Chrome)
-First download the Chrome extension Tampermonkey from their website: https://www.tampermonkey.net/
+First download the Chrome extension [Tampermonkey](https://www.tampermonkey.net/) from their website. 
 
 ![Website](Images/chrome/web.png)
 
