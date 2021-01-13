@@ -8,19 +8,32 @@ Tampermonkey script for GeoGuessr that incorporates a win streak counter into th
 Based on SubSymmetry's Country Streak Counter (Manual) script! 
 
 ## Screenshots
-![Header](Images/header.png)
-![Win Screen](Images/win.png)
-![Loss Screen](Images/loss.png)
+![Header](Images/general/header.png)
+![Win Screen](Images/general/win.png)
+![Loss Screen](Images/general/loss.png)
 
-## Installation
+## Installation (Chrome)
 First download the Chrome extension Tampermonkey from their website: https://www.tampermonkey.net/
 
-![Website](Images/web.png)
+![Website](Images/chrome/web.png)
 
 After installing, click the Tampermonkey icon up in the right hand corner and choose "Create a new script..." 
 
-![New Script](Images/new.png)
+![New Script](Images/chrome/new.png)
 
-Delete the default script and copy & paste the Battle Royale Streak Counter (Automated) script into the editing field. Then click file then save and you're done!! Log on to GeoGuessr and have fun!
+Delete the default script and copy & paste the [Battle Royale Streak Counter (Automated) script](https://raw.githubusercontent.com/Sondrake/Battle-Royale-Streak-Counter/main/battle_royale_streak_counter_(automated).js) into the editing field. Then click file then save and you're done!! Log on to GeoGuessr and have fun!
 
-![Save](Images/save.png)
+![Save](Images/chrome/save.png)
+
+## Installation (Firefox)
+First download the Firefox extension [Greasemonkey](https://addons.mozilla.org/fr/firefox/addon/greasemonkey/) (it should work with any *monkey extension, if you already have one)
+
+![AMO page](Images/firefox/web.png)
+
+After installing, click the Greasemonkey icon up in the right hand corner and choose "New user script..." 
+
+![New Script](Images/firefox/new.png)
+
+Delete the default script and copy & paste the [Battle Royale Streak Counter (Automated) script](https://raw.githubusercontent.com/Sondrake/Battle-Royale-Streak-Counter/main/battle_royale_streak_counter_(automated).js) into the editing field. Then click the save icon and you're done ! Log on to GeoGuessr and have fun!
+
+![Save](Images/firefox/save.png)
