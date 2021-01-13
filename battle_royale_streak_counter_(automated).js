@@ -119,7 +119,6 @@ function update() {
     if(document.getElementsByClassName("game-status").length == 0) addCounter();
     addStreak1();
     checkStreak();
-    console.log("gutta");
     setTimeout(update, 250);
 };
 
