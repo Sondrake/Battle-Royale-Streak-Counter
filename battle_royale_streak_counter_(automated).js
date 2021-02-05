@@ -6,10 +6,10 @@
 // @grant        GM_addStyle
 // ==/UserScript==
 
-let wins = parseInt(sessionStorage.getItem("Wins"), 10);
-let pb = parseInt(sessionStorage.getItem("PB"), 10);
+var wins = parseInt(sessionStorage.getItem("Wins"), 10);
+var pb = parseInt(sessionStorage.getItem("PB"), 10);
 
-let once = false;
+var once = false;
 
 if(sessionStorage.getItem("Wins") == null) {
     sessionStorage.setItem("Wins", 0);
@@ -30,7 +30,6 @@ function updateStreak(newWins) {
     if(document.getElementById("win-streak") != null) {
         document.getElementById("win-streak").innerHTML = `<a class="label-1"><p id="win-streak" class="label-1">Wins ${wins} : PB ${pb}</p></a>`;
     };
-
     if(document.getElementsByClassName("win-streak2")[0] != null) {
         if (document.getElementsByClassName("win-streak2")[0].firstElementChild.id == "win-id") document.getElementsByClassName("win-streak2")[0].innerHTML = `<p class="popup-view__header" id="win-id">Win Streak: ${wins}</p>`;
     };
@@ -67,14 +66,13 @@ function addStreak1(newDiv1, pbDiv) {
 
     if(lowerTextElement != null && document.getElementsByClassName("win-streak2")[0] == null){
         const imageText = document.getElementsByClassName("popup-view__image")[0].getElementsByTagName("img")[0].alt;
-        const headerText = document.getElementsByClassName("popup-view__header")[0].textContent;
 
-        if (headerText == "Congratulations, you won!") {
-            lowerTextElement.insertBefore(pbDiv, document.getElementsByClassName("popup-view__header")[0].nextSibling);
-            pbDiv.innerHTML = `<p class="popup-view__header" id="best-id">Best Streak: ${pb}</p>`;
-
-            lowerTextElement.insertBefore(newDiv1, document.getElementsByClassName("pb")[0]);
+        if (imageText == "You won") {
+            lowerTextElement.insertBefore(newDiv1, document.getElementsByClassName("buttons margin--top-large")[0]);
             newDiv1.innerHTML = `<p class="popup-view__header" id="win-id">Win Streak: ${wins}</p>`;
+
+            lowerTextElement.insertBefore(pbDiv, document.getElementsByClassName("buttons margin--top-large")[0]);
+            pbDiv.innerHTML = `<p class="popup-view__header" id="best-id">Best Streak: ${pb}</p>`;
         } else if(imageText == "You were knocked out") {
             lowerTextElement.appendChild(newDiv1);
             newDiv1.innerHTML = `<p class="popup-view__header" id="lose-id">You got ${wins} wins in a row!</p>`;
@@ -85,28 +83,31 @@ function addStreak1(newDiv1, pbDiv) {
     };
 };
 
+var movedWin = false;
+function moveWinText() {
+    movedWin = true;
+    const buttonElement = document.getElementsByClassName("buttons margin--top-large")[0];
+    const lowerTextElement = document.getElementsByClassName("popup__layer popup__layer--layer-1")[0];
+    if (buttonElement) {
+        lowerTextElement.insertBefore(document.getElementsByClassName("pb")[0], buttonElement);
+        lowerTextElement.insertBefore(document.getElementsByClassName("win-streak2")[0], buttonElement);
+    };
+};
+
 function checkStreak() {
     if(document.getElementsByClassName("popup-view__image")[0] != null) {
         const imageText = document.getElementsByClassName("popup-view__image")[0].getElementsByTagName("img")[0].alt;
-        const headerText = document.getElementsByClassName("popup-view__header")[0].textContent;
 
         if(imageText == "You were knocked out") {
             if(!once) {
                 once = true;
                 resetWins();
             };
-        } else if(headerText == "Congratulations, you won!") {
+        } else if(imageText == "You won") {
             if(!once) {
                 once = true;
                 addWins(1);
             };
-
-            const lowerTextElement = document.getElementsByClassName("popup__layer popup__layer--layer-1")[0];
-            const pbDiv = document.getElementsByClassName("pb")[0];
-            const winStreakDiv = document.getElementsByClassName("win-streak2")[0];
-
-            lowerTextElement.insertBefore(pbDiv, document.getElementsByClassName("popup-view__header")[0].nextSibling);
-            lowerTextElement.insertBefore(winStreakDiv, document.getElementsByClassName("pb")[0]);
         };
     } else {
         once = false
@@ -119,6 +120,7 @@ function update() {
     if(document.getElementsByClassName("game-status").length == 0) addCounter();
     addStreak1();
     checkStreak();
+    if (!movedWin) setTimeout(moveWinText, 1250);
     setTimeout(update, 250);
 };
 
