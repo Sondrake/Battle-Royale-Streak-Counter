@@ -30,11 +30,12 @@ function updateStreak(newWins) {
     if(document.getElementById("win-streak") != null) {
         document.getElementById("win-streak").innerHTML = `<a class="label-1"><p id="win-streak" class="label-1">Wins ${wins} : PB ${pb}</p></a>`;
     };
+
     if(document.getElementsByClassName("win-streak2")[0] != null) {
-        if (document.getElementsByClassName("win-streak2")[0].firstElementChild.id == "win-id") document.getElementsByClassName("win-streak2")[0].innerHTML = `<p class="popup-view__header" id="win-id">Win Streak: ${wins}</p>`;
+        if (document.getElementsByClassName("win-streak2")[0].firstElementChild.id == "win-id") document.getElementsByClassName("win-streak2")[0].innerHTML = `<p class="popup-view__paragraph" id="win-id">Win Streak: ${wins}</p>`;
     };
     if(document.getElementsByClassName("pb")[0] != null) {
-        document.getElementsByClassName("pb")[0].innerHTML = `<p class="popup-view__header" id="best-id">Best Streak: ${pb}</p>`;
+        document.getElementsByClassName("pb")[0].innerHTML = `<p class="popup-view__paragraph" id="best-id">Best Streak: ${pb}</p>`;
     };
 };
 
@@ -75,22 +76,11 @@ function addStreak1(newDiv1, pbDiv) {
             pbDiv.innerHTML = `<p class="popup-view__header" id="best-id">Best Streak: ${pb}</p>`;
         } else if(imageText == "You were knocked out") {
             lowerTextElement.appendChild(newDiv1);
-            newDiv1.innerHTML = `<p class="popup-view__header" id="lose-id">You got ${wins} wins in a row!</p>`;
+            newDiv1.innerHTML = `<p class="popup-view__paragraph" id="lose-id">You got ${wins} wins in a row!</p>`;
 
             lowerTextElement.appendChild(pbDiv);
-            pbDiv.innerHTML = `<p class="popup-view__header" id="best-id">Best Streak: ${pb}</p>`;
+            pbDiv.innerHTML = `<p class="popup-view__paragraph" id="best-id">Best Streak: ${pb}</p>`;
         };
-    };
-};
-
-var movedWin = false;
-function moveWinText() {
-    movedWin = true;
-    const buttonElement = document.getElementsByClassName("buttons margin--top-large")[0];
-    const lowerTextElement = document.getElementsByClassName("popup__layer popup__layer--layer-1")[0];
-    if (buttonElement) {
-        lowerTextElement.insertBefore(document.getElementsByClassName("pb")[0], buttonElement);
-        lowerTextElement.insertBefore(document.getElementsByClassName("win-streak2")[0], buttonElement);
     };
 };
 
@@ -109,6 +99,7 @@ function checkStreak() {
                 addWins(1);
             };
         };
+
     } else {
         once = false
         const win2 = document.getElementsByClassName("win-streak2")[0];
@@ -120,7 +111,6 @@ function update() {
     if(document.getElementsByClassName("game-status").length == 0) addCounter();
     addStreak1();
     checkStreak();
-    if (!movedWin) setTimeout(moveWinText, 1250);
     setTimeout(update, 250);
 };
 
@@ -145,16 +135,16 @@ function resetPB() {
 ////// CHANGE KEYBINDINGS HERE //////
 document.addEventListener('keypress', (e) => {
     switch (e.key) {
-        case '1': // <---- yes, here
+        case '1': // <---- Add win to counter : Default '1'
             addWins(1);
             break;
-        case '2':
+        case '2': // <---- Remove win from counter : Default '2'
             addWins(-1);
             break;
-        case '0':
+        case '0': // <---- Reset win streak : Default '0'
             resetWins();
             break;
-        case '9':
+        case '9': // <---- Reset personal best : Default '9'
             resetPB();
             break;
     };
